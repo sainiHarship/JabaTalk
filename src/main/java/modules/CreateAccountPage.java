@@ -27,6 +27,7 @@ public class CreateAccountPage {
     public static void createAccount(String Name, String orgName, String email) throws Exception {
         String lastName = Common.getRandomAlphaNumericString(4);
         String fullName = Name+" "+lastName;
+        System.out.println("");
         Common.ClearAndSendKeys(CreateAccountRepo.fullName,fullName, "Full Name");
         Common.ClearAndSendKeys(CreateAccountRepo.orgName,orgName, "Organisation Name");
         Common.ClearAndSendKeys(CreateAccountRepo.signUpEmail,email, "signup email");

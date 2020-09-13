@@ -144,3 +144,11 @@ buildNumber.properties
 .mvn/wrapper/maven-wrapper.jar
 
 # End of https://www.toptal.com/developers/gitignore/api/java,maven,intellij
+.idea/.name
+.idea/compiler.xml
+.idea/encodings.xml
+.idea/jarRepositories.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+JabaTalks.iml
