@@ -18,6 +18,7 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selectors.withText;
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
+import static com.codeborne.selenide.WebDriverRunner.source;
 import static java.lang.Thread.sleep;
 
 public class Common extends Start {
@@ -302,6 +303,15 @@ public class Common extends Start {
             }
         }
         return r.toString();
+    }
+
+    public static void sync(Long sTime) throws Exception {
+                try {
+                    Thread.sleep(sTime);
+                } catch (InterruptedException e) {
+                    System.out.println(e);;
+                }
+
     }
 
 }

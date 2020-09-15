@@ -12,6 +12,7 @@ import org.testng.Assert;
 import utils.EmailUtils;
 
 import java.util.ArrayList;
+import java.util.Dictionary;
 import java.util.List;
 
 import static com.codeborne.selenide.Condition.appear;
@@ -19,9 +20,11 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Selectors.byCssSelector;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
+import static utils.Common.sync;
 
 public class CreateAccountPage {
-    public static final String fullName = null;
+    public static String fullName=null;
+
     public void checkLanguageDropdown() throws Exception {
         List<String> actualLang = new ArrayList<>();
         Common.ClickElement(CreateAccountRepo.chooseLanguage,"Click language dropdown");
@@ -36,14 +39,15 @@ public class CreateAccountPage {
 
     public void createAccount(String Name, String orgName, String email) throws Exception {
         String lastName = Common.getRandomAlphaNumericString(4);
-        String fullName = Name+" "+lastName;
+        fullName = Name+" "+lastName;
         String emailSuccessMsg = " A welcome email has been sent. Please check your email. ";
         Common.ClearAndSendKeys(CreateAccountRepo.fullName,fullName, "Full Name");
         Common.ClearAndSendKeys(CreateAccountRepo.orgName,orgName, "Organisation Name");
         Common.ClearAndSendKeys(CreateAccountRepo.signUpEmail,email, "signup email");
         Common.ClickElement(CreateAccountRepo.signUpAgree, "Agree Terms & Conditions");
         Common.ClickElement(CreateAccountRepo.signUpBtn,"Get Started");
-        WebElement element = $("div.alert span").waitUntil(appear, 5000l).shouldBe(exist);
+        sync(5000l);
+        //WebElement element = $("div.alert span").waitUntil(appear, 5000l).shouldBe(exist);
     }
 
     public void isEmailReceived(EmailUtils emailUtils,String fullName) throws Exception {

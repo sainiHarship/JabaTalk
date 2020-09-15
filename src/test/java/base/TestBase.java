@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeSuite;
 import utils.Common;
 import utils.EmailUtils;
 
+import javax.mail.MessagingException;
 import java.io.IOException;
 
 public class TestBase {
@@ -16,17 +17,12 @@ public class TestBase {
     private static EmailUtils emailUtils;
 
     @BeforeSuite
-    public void beforeSuite() throws IOException {
+    public void beforeSuite() throws IOException, MessagingException {
+        EmailUtils.connect();
     }
 
     @BeforeClass
     public void beforeClass() throws Exception {
-            try {
-                emailUtils = new EmailUtils("jabatalktestemail@gmail.com", "Test@123", "smtp.gmail.com", EmailUtils.EmailFolder.INBOX);
-            } catch (Exception e) {
-                e.printStackTrace();
-                Assert.fail(e.getMessage());
-            }
         Common.Init();
     }
 

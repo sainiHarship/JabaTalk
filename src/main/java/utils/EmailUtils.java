@@ -1,5 +1,9 @@
 package utils;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,6 +19,7 @@ import java.util.regex.Pattern;
 import javax.mail.*;
 import javax.mail.search.SubjectTerm;
 
+import static utils.Common.sync;
 import static utils.Log.logTestStep;
 
 /**
@@ -136,15 +141,24 @@ public class EmailUtils {
         return folder.getMessage(index);
     }
 
+
+    public static EmailUtils emailUtils = null;
+
+    public static void connect() throws MessagingException {
+        if (emailUtils==null) {
+            logTestStep("Establishing Connection");
+            emailUtils = new EmailUtils("jabatalktestemail@gmail.com", "Test@123", "smtp.gmail.com", EmailFolder.INBOX);
+        }
+    }
+
     /**
      * Returns boolean value for mail Receipt when user Signups.
      * @param fullName searches for user's fullname in the mail received.
      */
-    public boolean messagePresentValidation(String fullName) throws Exception {
-        logTestStep("Establishing Connection");
-        EmailUtils emailUtils = new EmailUtils("jabatalktestemail@gmail.com", "Test@123", "smtp.gmail.com", EmailFolder.INBOX);
+    public static boolean messagePresentValidation(String fullName) throws Exception {
+        sync(3000l);
         logTestStep("No of unread emails in Inbox :"+emailUtils.getNumberOfUnreadMessages());
-        Message[] messages = emailUtils.getMessagesBySubject("Please Complete JabaTalks Account",true,emailUtils.getNumberOfMessages());
+        Message[] messages = emailUtils.getMessagesBySubject("Hi "+fullName+" - Please Complete JabaTalks Account",true,emailUtils.getNumberOfMessages());
         for (Message message: messages){
             String html = emailUtils.getMessageContent(message);  // Later to get Registration link from email
             if(emailUtils.isTextInMessage(message,fullName)){
