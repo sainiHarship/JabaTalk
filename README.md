@@ -19,12 +19,10 @@ Additional Info:
 Dummy gmail used: jabatalktestemail@gmail.com/ Test@123
 
 Tracking Info:
-> Framework development. 1/2 day
-> Spent more than required time on UI automation, because the DOM of the website is bit tricky. 1/2 day
-> For email validation, first choose wrong tool (paid one). Started working with unrest later found out that keys were paid. 1 day
-> Learnt javax.mail utilites and how to make mail connectivity. Gained knowledge about all the methods exposed and how to use them more efficiently. 2 days
-
-
+- Framework development.      1/2 day
+- Spent more than required time on UI automation, because the DOM of the website is bit tricky.   1/2 day
+- For email validation, first choose wrong tool (paid one). Started working with unrest later found out that keys were paid. 1 day
+- Learnt javax.mail utilites and how to make mail connectivity. Gained knowledge about all the methods exposed and how to use them more efficiently. 2 days
 
 Thanks for coming here! Feedback highly appreciated.
  If you like it then please acknowledge.
