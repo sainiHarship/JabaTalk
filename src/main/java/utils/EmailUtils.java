@@ -8,11 +8,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -156,11 +152,16 @@ public class EmailUtils {
      * @param fullName searches for user's fullname in the mail received.
      */
     public static boolean messagePresentValidation(String fullName) throws Exception {
-        sync(3000l);
+        sync(300l);
         logTestStep("No of unread emails in Inbox :"+emailUtils.getNumberOfUnreadMessages());
+        Message messageLatest = emailUtils.getMessageByIndex(emailUtils.getNumberOfMessages());
+        String subject = messageLatest.getSubject();
+        System.out.println("Message subject : "+subject);
         Message[] messages = emailUtils.getMessagesBySubject("Hi "+fullName+" - Please Complete JabaTalks Account",true,emailUtils.getNumberOfMessages());
+        
         for (Message message: messages){
             String html = emailUtils.getMessageContent(message);  // Later to get Registration link from email
+            System.out.println(html);
             if(emailUtils.isTextInMessage(message,fullName)){
                 logTestStep("Email received ");
                 return true;

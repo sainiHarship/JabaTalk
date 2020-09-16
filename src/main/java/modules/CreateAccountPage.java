@@ -46,7 +46,7 @@ public class CreateAccountPage {
         Common.ClearAndSendKeys(CreateAccountRepo.signUpEmail,email, "signup email");
         Common.ClickElement(CreateAccountRepo.signUpAgree, "Agree Terms & Conditions");
         Common.ClickElement(CreateAccountRepo.signUpBtn,"Get Started");
-        sync(5000l);
+        sync(20000l);
         //WebElement element = $("div.alert span").waitUntil(appear, 5000l).shouldBe(exist);
     }
 

@@ -16,6 +16,7 @@ public class TC_1 extends TestBase {
         objCreateAccount.checkLanguageDropdown();
         objCreateAccount.createAccount("Harship","TestOrganisation","jabatalktestemail@gmail.com");
         boolean emailReceived = EmailUtils.messagePresentValidation(CreateAccountPage.fullName);
+        Assert.assertTrue(emailReceived, "Email Received : TC Pass");
     }
 
 }
